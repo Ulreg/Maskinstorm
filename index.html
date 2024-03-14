@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MASKINSTORM.DK</title>
+    <style>
+        body {
+            margin: 0; /* Remove default body margin */
+        }
+
+        #screen {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background-color: green;
+            overflow: hidden;
+            margin: 0; /* Remove default body margin */
+        }
+
+        #scan, 
+        #bezel {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top:0;
+            left:0;
+            pointer-events: none;
+        }
+
+        #scan{
+            opacity: 80%;
+        }
+        
+        .noselect {
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+             user-select: none; /* Non-prefixed version, currently
+                                      supported by Chrome, Edge, Opera and Firefox */
+        }
+        #content{
+            font-family: VT323;
+            padding: 100px;
+            color: rgb(93, 253, 0);
+            font-size: 30px;
+            text-shadow: 1px 1px 2px rgb(150, 167, 124), 0 0 1em rgb(150, 167, 124), 0 0 0.2em rgb(150, 167, 124);
+            height: calc(100vh - 100px); /* Adjusted height to account for padding */
+            overflow: auto;
+            position: relative;
+            z-index: 1;
+            margin: 0; /* Remove default body margin */
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 20px;
+            background-color: rgb(93, 253, 0);
+            animation: blink 0.3s infinite alternate;
+            margin-left: 2px; /* Adjusted spacing */
+            margin-bottom: 4px;
+            vertical-align: middle; /* or baseline */
+            box-shadow: 1px 1px 2px rgb(150, 167, 124), 0 0 1em rgb(150, 167, 124), 0 0 0.2em rgb(150, 167, 124);
+
+            
+        }
+
+    
+        @keyframes wiggle {
+            0% { transform: rotate(-1deg); }
+            50% { transform: rotate(1deg); }
+            100% { transform: rotate(-1deg); }
+        }
+        .wiggle {
+            animation: wiggle 0.1s infinite;
+        }
+
+
+        @keyframes blink {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="screen">
+        <img src="scanlines.png" id="scan" class="noselect"/>
+        <img src="bezel.png" id="bezel" class="noselect"/>
+        <div id="content">
+            <h1>Velkommen til MASKINSTORMEN :-)</h1>
+            <p>Du er så heldig at sidde på forreste række til din egen undergang.</p>
+            <p>Ludditterne (senere kendt som maskinstormere, ledladende) var britiske arbejdere, der i begyndelsen af 1800-tallet organiserede opstande 
+                mod indførelse af nye maskiner, som de anså for årsagen til arbejdsløshed og social nød. 
+                De ødelagde ofte maskiner, og protesterede mod de ændringer, som den industrielle revolution, 
+                havde forårsaget. De mente, at udviklingen betød, at flere mistede deres jobs og pålagde dem en ny livstil, 
+                som de ikke brød sig om. </p> 
+            <p>Selvom Ludditterne ikke havde ret i alle deres forudsigelser, havde de trods alt en pointe i, at indførelsen af
+                maskiner ville få store konsekvenser for menneskene.</p>
+            
+            <p>Og der er intet du eller nogen anden kan stille op...</p>
+            <p>MASKINERNE KOMMER!</p>
+            <p>press ENTER<span class="cursor"></span> </p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to handle key press event
+        document.addEventListener('keydown', function(event) {
+            // Check if the pressed key is Enter
+            if (event.key === 'Enter') {
+                // Replace the content with the graphical representation
+                document.getElementById('content').innerHTML = `
+                <pre class="wiggle">
+          .   .dP                  dP                   9b                 9b.    .
+          4    qXb         .       dX                     Xb       .        dXp     t
+          dX.    9Xb      .dXb    __                         __    dXb.     dXP     .Xb
+          9XXb._       _.dXXXXb dXXXXbo.                 .odXXXXb dXXXXb._       _.dXXP
+            9XXXXXXXXXXXXXXXXXXXVXXXXXXXXOo.           .oOXXXXXXXXVXXXXXXXXXXXXXXXXXXXP
+              9XXXXXXXXXXXXXXXXXXXXX'~   ~\`OOO8b   d8OOO'~   ~\`XXXXXXXXXXXXXXXXXXXXXP'
+                \`9XXXXXXXXXXXP' \`9XX'   DIE    \`98v8P'  HUMAN   \`XXP' \`9XXXXXXXXXXXP'
+                    ~~~~~~~       9X.          .db|db.          .XP       ~~~~~~~
+                                    )b.  .dbo.dP'\`v'\`9b.odb.  .dX(
+                                  ,dXXXXXXXXXXXb     dXXXXXXXXXXXb.
+                                dXXXXXXXXXXXP'   .   \`9XXXXXXXXXXXb
+                              dXXXXXXXXXXXXb   d|b   dXXXXXXXXXXXXb
+                              9XXb'   \`XXXXXb.dX|Xb.dXXXXX'   \`dXXP
+                              \`'      9XXXXXX(   )XXXXXXP      \`'
+                                      XXXX X.\`v'.X XXXX
+                                      XP^X'\`b   d'\`X^XX
+                                      X. 9  \`   '  P )X
+                                      \`b  \`       '  d'
+                    </pre>
+                `;
+            }
+            
+            }
+        );
+    </script>
+</body>
+</html>
+
